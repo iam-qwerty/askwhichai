@@ -1,0 +1,21 @@
+# CodeRabbit Configuration
+# See: https://docs.coderabbit.ai/guides/configure-coderabbit
+#
+# Setup: Install the CodeRabbit GitHub App on your repository.
+# https://github.com/apps/coderabbitai
+#
+# This file configures how CodeRabbit reviews pull requests.
+
+review:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+
+chat:
+  auto_reply: true
