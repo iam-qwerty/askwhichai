@@ -1,7 +1,15 @@
+// ============================================================
+// AskWhichAI — Cloudflare Workers config (Wrangler)
+// ============================================================
+// This tells Cloudflare how to run our app as a Worker.
+// The TanStack Start server-entry file is the main script
+// that Cloudflare will invoke on every HTTP request.
+// ============================================================
+
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "which-ai",
-  "compatibility_date": "2025-09-02",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "@tanstack/react-start/server-entry"
+  "name": "which-ai",                                    // Worker name on Cloudflare
+  "compatibility_date": "2025-09-02",                    // Cloudflare runtime version
+  "compatibility_flags": ["nodejs_compat"],              // Enables Node.js built-in APIs
+  "main": "@tanstack/react-start/server-entry"           // TanStack Start SSR entry point
 }

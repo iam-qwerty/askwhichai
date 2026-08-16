@@ -1,9 +1,28 @@
+/* ============================================================
+   AskWhichAI — Global styles
+   ============================================================
+   This file defines:
+     1. Font imports (Signika from Google Fonts)
+     2. Tailwind CSS v4 setup + custom theme tokens
+     3. CSS custom properties for light + dark mode
+     4. Custom CSS animations (fade-in, slide-up, scale-in)
+     5. Texture overlay utility for card backgrounds
+   ============================================================ */
+
+/* --- Font --- */
+/* Signika: a clean, rounded sans-serif for headings and body */
 @import url("https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap");
+
+/* --- Tailwind CSS v4 + Animation plugin --- */
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Dark mode detection: .dark class on <html> */
 @custom-variant dark (&:is(.dark *));
 
+/* --- Custom theme tokens --- */
+/* These map CSS variables to Tailwind utility classes.
+   The actual color values are defined in :root and .dark below. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -27,6 +46,14 @@
   --color-border: var(--border);
   --color-success: var(--success);
   --color-destructive: var(--destructive);
+  --color-pricing-free: var(--pricing-free);
+  --color-pricing-free-bg: var(--pricing-free-bg);
+  --color-pricing-open-source: var(--pricing-open-source);
+  --color-pricing-open-source-bg: var(--pricing-open-source-bg);
+  --color-pricing-freemium: var(--pricing-freemium);
+  --color-pricing-freemium-bg: var(--pricing-freemium-bg);
+  --color-pricing-paid: var(--pricing-paid);
+  --color-pricing-paid-bg: var(--pricing-paid-bg);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -65,6 +92,7 @@
   --color-destructive-foreground: var(--destructive-foreground);
 }
 
+/* --- Light mode (default) --- */
 :root {
   --radius: 0.625rem;
   --background: oklch(1.0000 0 0);
@@ -75,17 +103,25 @@
   --popover-foreground: oklch(0.2138 0.0019 286.2347);
   --primary: oklch(0.2264 0 0);
   --primary-foreground: oklch(1.0000 0 0);
-  --secondary: oklch(1.0000 0 0);
+  --secondary: oklch(0.9670 0 0);
   --secondary-foreground: oklch(0.2264 0 0);
-  --muted: oklch(1.0000 0 0);
-  --muted-foreground: oklch(0.6334 0 0);
-  --accent: oklch(1.0000 0 0);
+  --muted: oklch(0.9670 0 0);
+  --muted-foreground: oklch(0.5100 0 0);
+  --accent: oklch(0.9600 0 0);
   --accent-foreground: oklch(0.2264 0 0);
   --success: oklch(0.72 0.18 145);
   --destructive: oklch(0.6162 0.2506 26.2396);
-  --border: oklch(1.0000 0 0);
-  --input: oklch(1.0000 0 0);
-  --ring: oklch(0.8109 0 0);
+  --border: oklch(0.9220 0 0);
+  --input: oklch(0.9220 0 0);
+  --ring: oklch(0.7050 0 0);
+  --pricing-free: oklch(0.4500 0.1400 150);
+  --pricing-free-bg: oklch(0.7200 0.1800 145 / 0.12);
+  --pricing-open-source: oklch(0.4500 0.1400 260);
+  --pricing-open-source-bg: oklch(0.6500 0.1500 260 / 0.12);
+  --pricing-freemium: oklch(0.5000 0.1300 60);
+  --pricing-freemium-bg: oklch(0.7500 0.1500 70 / 0.15);
+  --pricing-paid: oklch(0.5000 0.1900 25);
+  --pricing-paid-bg: oklch(0.6200 0.2500 26 / 0.10);
   --chart-1: oklch(0.9492 0.0252 249.9508);
   --chart-2: oklch(0.7250 0.1329 260.1166);
   --chart-3: oklch(0.6452 0.1683 264.0840);
@@ -95,13 +131,14 @@
   --sidebar-foreground: oklch(0.2138 0.0019 286.2347);
   --sidebar-primary: oklch(0.2264 0 0);
   --sidebar-primary-foreground: oklch(1.0000 0 0);
-  --sidebar-accent: oklch(1.0000 0 0);
+  --sidebar-accent: oklch(0.9600 0 0);
   --sidebar-accent-foreground: oklch(0.2264 0 0);
-  --sidebar-border: oklch(1.0000 0 0);
-  --sidebar-ring: oklch(0.8109 0 0);
+  --sidebar-border: oklch(0.9220 0 0);
+  --sidebar-ring: oklch(0.7050 0 0);
   --destructive-foreground: oklch(1.0000 0 0);
 }
 
+/* --- Dark mode (.dark class on <html>) --- */
 .dark {
   --background: oklch(0.2138 0.0019 286.2347);
   --foreground: oklch(1.0000 0 0);
@@ -110,7 +147,7 @@
   --popover: oklch(0.3012 0 0);
   --popover-foreground: oklch(1.0000 0 0);
   --primary: oklch(0.6651 0.1609 57.0190);
-  --primary-foreground: oklch(1.0000 0 0);
+  --primary-foreground: oklch(0.1600 0.0150 57.0190);
   --secondary: oklch(0.3012 0 0);
   --secondary-foreground: oklch(1.0000 0 0);
   --muted: oklch(0.3012 0 0);
@@ -119,6 +156,14 @@
   --accent-foreground: oklch(1.0000 0 0);
   --success: oklch(0.72 0.18 145);
   --destructive: oklch(0.6162 0.2506 26.2396);
+  --pricing-free: oklch(0.8200 0.1500 150);
+  --pricing-free-bg: oklch(0.7200 0.1800 145 / 0.15);
+  --pricing-open-source: oklch(0.8000 0.1000 255);
+  --pricing-open-source-bg: oklch(0.7300 0.1300 260 / 0.15);
+  --pricing-freemium: oklch(0.8300 0.1200 75);
+  --pricing-freemium-bg: oklch(0.7500 0.1500 70 / 0.15);
+  --pricing-paid: oklch(0.8000 0.1000 20);
+  --pricing-paid-bg: oklch(0.6200 0.2500 26 / 0.15);
   --border: oklch(0.3052 0 0);
   --input: oklch(0.3639 0 0);
   --ring: oklch(0.6334 0 0);
@@ -138,6 +183,7 @@
   --destructive-foreground: oklch(1.0000 0 0);
 }
 
+/* --- Base element styles --- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -149,35 +195,53 @@
   }
 }
 
-/* Animations */
+/* ============================================================
+   Custom animations
+   ============================================================ */
+
+/* Fade in: opacity 0 → 1 (used on tool cards, page sections) */
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+/* Slide up: moves element up 8px while fading in (used on staggered entries) */
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Scale in: grows from 95% to 100% while fading in (used on badges) */
 @keyframes scale-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
 .animate-fade-in {
-  animation: fade-in 0.5s ease-out both;
+  animation: fade-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-slide-up {
-  animation: slide-up 0.5s ease-out both;
+  animation: slide-up 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.3s ease-out both;
+  animation: scale-in 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Texture overlay for cards */
+/* Reduced motion: skip entrance animations entirely (content stays visible) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-scale-in {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   Texture overlay — subtle gradient pattern on cards
+   Creates a soft light/dark radial gradient for depth
+   ============================================================ */
 .texture-overlay {
   background-image:
     radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),

@@ -1,28 +1,38 @@
+// ============================================================
+// AskWhichAI — TypeScript configuration
+// ============================================================
+// Controls how TypeScript compiles/checks our code.
+// Key details:
+//   - Path aliases @/ and #/ both point to src/ for clean imports
+//   - "bundler" mode works with Vite's module resolution
+//   - Strict mode catches common bugs at compile time
+// ============================================================
+
 {
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["legacy-source", "my-tanstack-app", "node_modules", "dist", ".output", ".wrangler"],
   "compilerOptions": {
-    "target": "ES2022",
-    "jsx": "react-jsx",
-    "module": "ESNext",
+    "target": "ES2022",                        // Modern JS output (class fields, etc.)
+    "jsx": "react-jsx",                        // React JSX transform (no need to import React)
+    "module": "ESNext",                        // ESM module format
     "paths": {
-      "#/*": ["./src/*"],
-      "@/*": ["./src/*"]
+      "#/*": ["./src/*"],                      // Alias: import { x } from '#/lib/auth'
+      "@/*": ["./src/*"]                       // Alias: import { x } from '@/components/...'
     },
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],  // Type definitions available
+    "types": ["vite/client"],                  // Vite-specific types (import.meta.env, etc.)
 
-    /* Bundler mode */
+    /* Bundler mode — required by TanStack Start + Vite */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
+    "allowImportingTsExtensions": true,        // Allows .ts imports in output
+    "verbatimModuleSyntax": true,              // Keeps import/export as-is (no elision)
+    "noEmit": true,                            // Vite handles compilation, not tsc
 
-    /* Linting */
-    "skipLibCheck": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    /* Linting — catches common bugs */
+    "skipLibCheck": true,                      // Don't check .d.ts files (faster)
+    "strict": true,                            // Enable all strict type checks
+    "noUnusedLocals": true,                    // Error on unused variables
+    "noUnusedParameters": true,                // Error on unused function params
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   }

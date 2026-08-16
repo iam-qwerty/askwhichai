@@ -39,16 +39,6 @@ If you prefer not to use Tailwind CSS:
 4. Uninstall the packages: `npm install @tailwindcss/vite tailwindcss -D`
 
 
-## Setting up Neon
-
-When running the `dev` command, `vite-plugin-neon-new` will identify there is not a database setup. It will then create and seed a claimable database.
-
-It is the same process as [Neon Launchpad](https://neon.new).
-
-> [!IMPORTANT]  
-> Claimable databases expire in 72 hours.
-
-
 ## Setting up Better Auth
 
 1. Generate and set the `BETTER_AUTH_SECRET` environment variable in your `.env.local`:
@@ -63,24 +53,14 @@ It is the same process as [Neon Launchpad](https://neon.new).
 
 Better Auth can work in stateless mode, but to persist user data, add a database:
 
-```typescript
-// src/lib/auth.ts
-import { betterAuth } from "better-auth";
-import { Pool } from "pg";
-
-export const auth = betterAuth({
-  database: new Pool({
-    connectionString: process.env.DATABASE_URL,
-  }),
-  // ... rest of config
-});
-```
-
-Then run migrations:
+1. Set `DATABASE_URL` to your Supabase Postgres connection string (Project Settings → Database → Connection string).
+2. Run migrations to create the auth tables:
 
 ```bash
 npx -y @better-auth/cli migrate
 ```
+
+The `pg` Pool setup in `src/lib/auth.ts` already reads `DATABASE_URL`.
 
 
 ## Deploy to Cloudflare Workers
